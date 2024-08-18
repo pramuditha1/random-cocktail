@@ -1,11 +1,9 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import Header from "./index";
+import Header, { HeaderPropTypes } from "./index";
 
 test("Header matches snapshot", () => {
-  const mockProps: {
-    title: string;
-  } = {
+  const mockProps: HeaderPropTypes = {
     title: "cocktail app",
   };
 
