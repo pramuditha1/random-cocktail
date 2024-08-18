@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tooltip component matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    aria-label="Pour the corona into an 18oz beer glass pour the bacardi and lim..."
+    class=""
+    data-mui-internal-clone-element="true"
+  >
+    <div
+      class="MuiTypography-root MuiTypography-caption MuiTypography-gutterBottom css-10ylt8q-MuiTypography-root"
+    >
+      Pour the corona into an 18oz beer glass pour the bacardi and...
+    </div>
+  </div>
+</DocumentFragment>
+`;

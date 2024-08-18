@@ -20,9 +20,15 @@ exports[`Header matches snapshot 1`] = `
         name
       </div>
       <div
-        class="MuiTypography-root MuiTypography-body2 MuiTypography-gutterBottom css-186q1z4-MuiTypography-root"
+        aria-label="description"
+        class=""
+        data-mui-internal-clone-element="true"
       >
-        description
+        <div
+          class="MuiTypography-root MuiTypography-caption MuiTypography-gutterBottom css-10ylt8q-MuiTypography-root"
+        >
+          description
+        </div>
       </div>
     </div>
     <div

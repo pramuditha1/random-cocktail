@@ -7,6 +7,7 @@ export interface LablePropTypes {
   variant: TypographyProps["variant"];
   component?: TypographyProps["component"];
   color?: TypographyProps["color"];
+  className?: string;
 }
 
 const Lable: React.FC<LablePropTypes> = ({
@@ -14,6 +15,7 @@ const Lable: React.FC<LablePropTypes> = ({
   variant = "body1",
   component = "div",
   color = "textPrimary",
+  ...props
 }) => {
   return (
     <Typography
@@ -21,6 +23,7 @@ const Lable: React.FC<LablePropTypes> = ({
       variant={variant}
       component={component}
       color={color}
+      {...props}
     >
       {text}
     </Typography>
