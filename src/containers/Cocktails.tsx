@@ -20,10 +20,8 @@ const Cocktails: React.FC = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      {/* <div className="flex justify-center"> */}
-        <Lable text="Cocktails" variant="h4" className="flex justify-center" />
-      {/* </div> */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <Lable text="Cocktails" variant="h4" className="flex justify-center" />
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-1">
         {cocktails &&
           cocktails.map((item, key) => (
             <ItemCard
@@ -32,7 +30,6 @@ const Cocktails: React.FC = () => {
               image={item.image}
               description={item.instructions}
               buttonAction={handleAddToFavourites}
-              // className="w-full"
             />
           ))}
       </div>
