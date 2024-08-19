@@ -7,7 +7,7 @@ import {
 } from "../store/reducers/cocktailSlice";
 import ButtonComp from "../components/Button";
 import { localization } from "../locale";
-import TextBoxComp from "../components/SearchAutoComplete";
+import TextBoxComp from "../components/TextBoxComp";
 
 const SearchCocktails: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -24,9 +24,6 @@ const SearchCocktails: React.FC = () => {
         () => dispatch(searchCocktailsByName(searchName)),
         1000
       );
-    } else {
-      // if search text empty fetch random 5
-      dispatch(fetchCocktail()); 
     }
     return () => {
       clearTimeout(delay);
@@ -45,7 +42,11 @@ const SearchCocktails: React.FC = () => {
         text={localization.getAnotherFive}
         onClickHandler={handleRefresh}
       />
-      <TextBoxComp handleOnChange={handleOnSearch} value={searchName} label="Search by name"/>
+      <TextBoxComp
+        handleOnChange={handleOnSearch}
+        value={searchName}
+        label="Search by name"
+      />
     </div>
   );
 };
