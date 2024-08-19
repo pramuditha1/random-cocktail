@@ -1,24 +1,23 @@
 import * as React from "react";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
-import { ButtonProps } from "@mui/material/Button";
 import Lable from "../Lable";
 import ButtonComp from "../Button";
-import TextBoxComp from "../TextBoxComp";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-
 export interface FavouriteListItemPropTypes {
   name: string;
+  quantity: number;
   description?: string;
   image: string;
-  addItem: ButtonProps["onClick"];
-  removeItem: ButtonProps["onClick"];
+  addItem: () => void;
+  removeItem: () => void;
   className?: string;
 }
 
 const FavouriteListItem: React.FC<FavouriteListItemPropTypes> = ({
   name,
+  quantity = 1,
   image,
   addItem,
   removeItem,
@@ -26,8 +25,8 @@ const FavouriteListItem: React.FC<FavouriteListItemPropTypes> = ({
 }) => {
   return (
     <Card
-      className={`flex items-center border border-gray-200 p-3 space-x-4 ${className}`}
-      sx={{ minWdth: 500, margin: 0.5 }}
+      className={`flex items-center border border-gray-200 p-3 space-x-4  overflow-y-auto ${className}`}
+      sx={{ minWdth: 500, minHeight: 100, margin: 0.5 }}
     >
       <CardMedia
         component="img"
@@ -43,20 +42,17 @@ const FavouriteListItem: React.FC<FavouriteListItemPropTypes> = ({
             startIcon={<AddIcon />}
             onClickHandler={addItem}
             style={{ padding: "5px 1px 5px 10px" }}
-            className="p-1 w-2"
           />
-          <TextBoxComp
-            className="text-center w-14"
-            label=""
-            type="number"
-            handleOnChange={() => {}}
+          <Lable
+            variant="body1"
+            text={quantity.toString()}
+            styles={{ justifyContent: "center" }}
           />
           <ButtonComp
             variant="outlined"
             startIcon={<RemoveIcon />}
             onClickHandler={removeItem}
             style={{ padding: "5px 1px 5px 10px" }}
-            className="p-1"
           />
         </div>
       </div>

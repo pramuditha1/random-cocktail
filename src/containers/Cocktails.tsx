@@ -1,11 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../store/store";
 import { makeSelectCocktails } from "../store/selectors";
-import { fetchCocktail } from "../store/reducers/cocktailSlice";
+import { CocktailState, fetchCocktail } from "../store/reducers/cocktailSlice";
 import { useEffect } from "react";
 import ItemCard from "../components/ItemCard";
 import Lable from "../components/Lable";
 import { localization } from "../locale";
+import { addFavourite } from "../store/reducers/favouritesSlice";
 
 const Cocktails: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -15,8 +16,9 @@ const Cocktails: React.FC = () => {
     dispatch(fetchCocktail());
   }, [dispatch]);
 
-  const handleAddToFavourites = () => {
-    console.log("clicked fav");
+  const handleAddToFavourites = (item: CocktailState) => {
+    // add cocktail to favourites list
+    dispatch(addFavourite(item));
   };
 
   return (
@@ -37,7 +39,7 @@ const Cocktails: React.FC = () => {
               name={item.name}
               image={item.image}
               description={item.instructions}
-              buttonAction={handleAddToFavourites}
+              addToCartHandler={() => handleAddToFavourites(item)}
             />
           ))}
       </div>

@@ -3,17 +3,17 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import { ButtonProps } from "@mui/material/Button";
 import Lable from "../Lable";
 import ButtonComp from "../Button";
 import { localization } from "../../locale";
 import TooltipCom from "../TooltipCom";
+import { CocktailState } from "../../store/reducers/cocktailSlice";
 
 export interface ItemCardPropTypes {
   name: string;
   description: string;
   image: string;
-  buttonAction: ButtonProps["onClick"];
+  addToCartHandler: (item: CocktailState) => void;
   className?: string;
 }
 
@@ -21,7 +21,7 @@ const ItemCard: React.FC<ItemCardPropTypes> = ({
   name,
   description,
   image,
-  buttonAction,
+  addToCartHandler,
   className,
 }) => {
   return (
@@ -34,14 +34,13 @@ const ItemCard: React.FC<ItemCardPropTypes> = ({
       />
       <CardContent>
         <Lable variant="h5" text={name} />
-        {/* <Lable variant="body1" color="text.secondary" text={description} /> */}
         <TooltipCom text={description} />
       </CardContent>
       <CardActions>
         <ButtonComp
           variant="outlined"
           text={localization.addToFavourites}
-          onClickHandler={buttonAction}
+          onClickHandler={addToCartHandler}
         />
       </CardActions>
     </Card>

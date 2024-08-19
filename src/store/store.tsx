@@ -1,11 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import cocktailReducer from "./reducers/cocktailSlice";
+import rootRedeucer from "./reducers";
 
 const store = configureStore({
-  reducer: {
-    cocktails: cocktailReducer,
-  },
+  reducer: rootRedeucer,
 });
+
 // store dispathc type that will used to dispatch async actions
 export type AppDispatch = typeof store.dispatch;
 // root store type that will used in selectors

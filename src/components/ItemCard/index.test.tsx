@@ -8,7 +8,7 @@ test("Header matches snapshot", () => {
     description: "description",
     image:
       "https://www.thecocktaildb.com/images/media/drink/qxuppv1468875308.jpg",
-    buttonAction: jest.fn(),
+    addToCartHandler: jest.fn(),
   };
 
   const { asFragment } = render(<ItemCard {...mockProps} />);

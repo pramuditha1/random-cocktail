@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { URL_COCKTAIL_RANDOM, URL_COCKTAIL_SEARCH } from "../../constants";
 
-interface CocktailState {
+export interface CocktailState {
   id: string;
   name: string;
   category: string;

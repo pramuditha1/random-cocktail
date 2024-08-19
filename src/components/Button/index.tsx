@@ -4,7 +4,7 @@ import Button, { ButtonProps } from "@mui/material/Button";
 export interface ButtonPropTypes {
   variant: ButtonProps["variant"];
   text?: string;
-  onClickHandler: ButtonProps["onClick"];
+  onClickHandler: (item?: any) => void;
   color?: ButtonProps["color"];
   startIcon?: ButtonProps["startIcon"];
   className?: string;
