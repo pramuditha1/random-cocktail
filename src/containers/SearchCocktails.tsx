@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../store/store";
 import {
@@ -13,9 +13,12 @@ const SearchCocktails: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [searchName, setSearchName] = useState<string | null>("");
 
-  const handleOnSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchName(e.target.value);
-  };
+  const handleOnSearch = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setSearchName(e.target.value);
+    },
+    [setSearchName]
+  );
 
   useEffect(() => {
     let delay: any;
@@ -30,10 +33,10 @@ const SearchCocktails: React.FC = () => {
     };
   }, [searchName, dispatch]);
 
-  const handleRefresh = async () => {
+  const handleRefresh = useCallback(() => {
     setSearchName("");
     dispatch(fetchCocktail());
-  };
+  }, [dispatch]);
 
   return (
     <div className="flex flex-col sm:flex-row items-center justify-around bg-white p-6 rounded-lg shadow-lg border border-gray-200 space-y-4 sm:space-y-0 sm:space-x-4 max-w-xl mx-auto mt-4">

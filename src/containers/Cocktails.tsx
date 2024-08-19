@@ -5,7 +5,7 @@ import {
   makeSelectIsLoadingCocktails,
 } from "../store/selectors";
 import { CocktailState, fetchCocktail } from "../store/reducers/cocktailSlice";
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 import ItemCard from "../components/ItemCard";
 import Lable from "../components/Lable";
 import { localization } from "../locale";
@@ -21,38 +21,47 @@ const Cocktails: React.FC = () => {
     dispatch(fetchCocktail());
   }, [dispatch]);
 
-  const handleAddToFavourites = (item: CocktailState) => {
-    // add cocktail to favourites list
-    dispatch(addFavourite({ ...item, quantity: 1 }));
-  };
+  const handleAddToFavourites = useCallback(
+    (item: CocktailState) => {
+      dispatch(addFavourite({ ...item, quantity: 1 }));
+    },
+    [dispatch]
+  );
 
-  return (
-    <div className="container mx-auto px-4 py-8">
-      <Lable text="Cocktails" variant="h4" className="flex justify-center" />
-      {!cocktails && !isLoading && (
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-full mt-4">
+        <CircularProgress />
+      </div>
+    );
+  }
+
+  if (!cocktails?.length) {
+    return (
+      <div className="container mx-auto px-4 py-8">
         <Lable
           text={localization.noCocktailsFound}
           variant="body1"
           className="flex justify-center"
         />
-      )}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-1">
-        {cocktails &&
-          cocktails.map((item, key) => (
-            <ItemCard
-              key={key}
-              name={item.name}
-              image={item.image}
-              description={item.instructions}
-              addToCartHandler={() => handleAddToFavourites(item)}
-            />
-          ))}
       </div>
-      {isLoading && (
-        <div className="flex justify-center items-center h-full">
-          <CircularProgress />
-        </div>
-      )}
+    );
+  }
+
+  return (
+    <div className="container mx-auto px-4 py-8">
+      <Lable text="Cocktails" variant="h4" className="flex justify-center" />
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-1">
+        {cocktails.map((item, key) => (
+          <ItemCard
+            key={key}
+            name={item.name}
+            image={item.image}
+            description={item.instructions}
+            addToCartHandler={() => handleAddToFavourites(item)}
+          />
+        ))}
+      </div>
     </div>
   );
 };

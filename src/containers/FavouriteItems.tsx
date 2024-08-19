@@ -11,11 +11,13 @@ import {
   addFavourite,
   removeFavourite,
 } from "../store/reducers/favouritesSlice";
+import { localization } from "../locale";
 
 export interface FavouriteItemsPropTypes {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
 const FavouriteItems: React.FC<FavouriteItemsPropTypes> = ({
   open,
   setOpen,
@@ -32,34 +34,41 @@ const FavouriteItems: React.FC<FavouriteItemsPropTypes> = ({
           maxWidth: "600px",
           width: "100%",
           [theme.breakpoints.only("xs")]: {
-            // extra small screens
             top: "unset",
             bottom: 0,
             left: 0,
             right: 0,
             borderRadius: 0,
             transform: "none",
-            maxWidth: "unset", // small screens maxWidth is unset
+            maxWidth: "unset",
             height: "80vh",
           },
         })}
       >
-        <Lable text="Favourite Items" variant="h4" className="text-center" />
+        <Lable
+          text={localization.titleFavouriteItems}
+          variant="h4"
+          className="text-center"
+        />
         <div className="overflow-y-auto max-h-[60vh] p-2">
-          {favouriteCocktails &&
-            favouriteCocktails.map((item, key) => {
-              console.log("fav item : ", item);
-              return (
-                <FavouriteListItem
-                  key={key}
-                  name={item.name}
-                  addItem={() => dispatch(addFavourite(item))}
-                  removeItem={() => dispatch(removeFavourite({ id: item.id }))}
-                  image={item.image}
-                  quantity={item.quantity}
-                />
-              );
-            })}
+          {favouriteCocktails && favouriteCocktails.length > 0 ? (
+            favouriteCocktails.map((item, key) => (
+              <FavouriteListItem
+                key={key}
+                name={item.name}
+                addItem={() => dispatch(addFavourite(item))}
+                removeItem={() => dispatch(removeFavourite({ id: item.id }))}
+                image={item.image}
+                quantity={item.quantity}
+              />
+            ))
+          ) : (
+            <Lable
+              text={localization.noFavouriteCocktailsFound}
+              variant="body2"
+              className="text-center"
+            />
+          )}
         </div>
         <Box
           sx={{
