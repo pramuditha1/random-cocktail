@@ -38,10 +38,11 @@ const FavouriteListItem: React.FC<FavouriteListItemPropTypes> = ({
         <Lable variant="h6" text={name} styles={{ justifyContent: "center" }} />
         <div className="flex items-center space-x-2">
           <ButtonComp
-            variant="outlined"
+            variant="contained"
             startIcon={<AddIcon />}
             onClickHandler={addItem}
             style={{ padding: "5px 1px 5px 10px" }}
+            color="success"
           />
           <Lable
             variant="body1"
@@ -49,10 +50,11 @@ const FavouriteListItem: React.FC<FavouriteListItemPropTypes> = ({
             styles={{ justifyContent: "center" }}
           />
           <ButtonComp
-            variant="outlined"
+            variant="contained"
             startIcon={<RemoveIcon />}
             onClickHandler={removeItem}
             style={{ padding: "5px 1px 5px 10px" }}
+            color="error"
           />
         </div>
       </div>

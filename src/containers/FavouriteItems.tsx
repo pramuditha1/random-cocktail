@@ -7,7 +7,10 @@ import ButtonComp from "../components/Button";
 import FavouriteListItem from "../components/FavouriteListItem";
 import { useDispatch, useSelector } from "react-redux";
 import { makeSelectFavouriteCocktails } from "../store/selectors";
-import { addFavourite, removeFavourite } from "../store/reducers/favouritesSlice";
+import {
+  addFavourite,
+  removeFavourite,
+} from "../store/reducers/favouritesSlice";
 
 export interface FavouriteItemsPropTypes {
   open: boolean;
@@ -26,14 +29,18 @@ const FavouriteItems: React.FC<FavouriteItemsPropTypes> = ({
         aria-labelledby="nested-modal-title"
         aria-describedby="nested-modal-description"
         sx={(theme) => ({
+          maxWidth: "600px",
+          width: "100%",
           [theme.breakpoints.only("xs")]: {
+            // extra small screens
             top: "unset",
             bottom: 0,
             left: 0,
             right: 0,
             borderRadius: 0,
             transform: "none",
-            maxWidth: "unset",
+            maxWidth: "unset", // small screens maxWidth is unset
+            height: "80vh",
           },
         })}
       >
@@ -47,7 +54,7 @@ const FavouriteItems: React.FC<FavouriteItemsPropTypes> = ({
                   key={key}
                   name={item.name}
                   addItem={() => dispatch(addFavourite(item))}
-                  removeItem={() => dispatch(removeFavourite({id: item.id}))}
+                  removeItem={() => dispatch(removeFavourite({ id: item.id }))}
                   image={item.image}
                   quantity={item.quantity}
                 />

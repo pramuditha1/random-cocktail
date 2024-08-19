@@ -25,7 +25,16 @@ const ItemCard: React.FC<ItemCardPropTypes> = ({
   className,
 }) => {
   return (
-    <Card className={className} sx={{ maxWidth: 250, margin: 2 }}>
+    <Card
+      className={className}
+      sx={{
+        maxWidth: 250,
+        margin: 2,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+      }}
+    >
       <CardMedia
         component="img"
         alt={`${name}-image`}

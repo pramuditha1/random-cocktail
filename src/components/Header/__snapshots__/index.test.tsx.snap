@@ -30,7 +30,7 @@ exports[`Header matches snapshot 1`] = `
           />
         </svg>
       </span>
-      Favourite Items
+      Favourite Items : 0
       <span
         class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
       />

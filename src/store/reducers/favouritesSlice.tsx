@@ -7,7 +7,7 @@ export interface FavouriteItemState {
   alcoholic: string;
   instructions: string;
   image: string;
-  quantity?: number;
+  quantity: number;
 }
 
 interface InitialStateType {
@@ -33,7 +33,7 @@ const favouritesSlice = createSlice({
       if (existingItem) {
         existingItem.quantity = (existingItem.quantity || 0) + 1;
       } else {
-        const newFavouriteItem = { ...action.payload, quantity: 1 };
+        const newFavouriteItem = { ...action.payload };
         state.data?.push(newFavouriteItem);
       }
     },
